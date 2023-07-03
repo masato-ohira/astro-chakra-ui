@@ -1,6 +1,15 @@
-import { Box, Button, HStack, Link } from '@chakra-ui/react'
+import { useApp } from '@/store/app'
+import {
+  Box,
+  Button,
+  FormControl,
+  HStack,
+  Link,
+  Switch,
+} from '@chakra-ui/react'
 
 export const MyHeader = () => {
+  const { mode, setMode } = useApp()
   const menu = [
     { name: 'Top', href: '/' },
     { name: 'About', href: '/about/' },
@@ -19,6 +28,15 @@ export const MyHeader = () => {
             </Link>
           )
         })}
+        <FormControl ml={4}>
+          <Switch
+            colorScheme='teal'
+            onChange={(e) => {
+              setMode(e.target.checked)
+            }}
+          />
+          {JSON.stringify({ mode })}
+        </FormControl>
       </HStack>
     </HStack>
   )
